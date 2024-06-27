@@ -19,7 +19,12 @@ jobs:
       - name: Lint with eslint
         run: |
           npx eslint --fix .
-          
+      - name: Install lizard
+        run: pip install lizard
+
+      - name: Limit complexity
+        run: $HOME/.local/bin/lizard -l javascript --CCN 3 src/
+        
       - name: Run and collect coverage
         run: npx nyc --reporter=html --reporter=text npm run test
 
